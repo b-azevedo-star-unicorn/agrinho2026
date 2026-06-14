@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIO-GEN PRO | LABORATÓRIO VIRTUAL</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="aviso-pedagogico">
+        <div class="aviso-content">
+            <h2 style="color: var(--bio-green); font-family: 'Outfit'; margin-top: 0;">BIO-GEN V.3</h2>
+            <p style="font-size: 0.9rem; line-height: 1.5;">Este sistema é um simulador de laboratório avançado para fins <strong>pedagógicos e educacionais</strong>.</p>
+            <button class="btn" onclick="fecharAviso()">INICIAR LABORATÓRIO</button>
+        </div>
+    </div>
+
+    <header>
+        <div class="logo">BIO-GEN <span>V.3.0</span></div>
+        <div id="status-tag" style="color: var(--dna-cyan); font-weight: bold;">SISTEMA PRONTO</div>
+    </header>
+
+    <main>
+        <section class="panel">
+            <h3 style="font-size: 0.9rem; color: var(--dna-cyan); margin-bottom: 20px;">CONTROLES ANALÍTICOS</h3>
+            <button class="btn" onclick="toggleGallery()">📦 SELECIONAR AMOSTRA</button>
+            <button class="btn" id="micro-btn" onclick="toggleMicroscope()">🔬 MICROSCÓPIO</button>
+            <button class="btn" onclick="runAnalysis()" id="anal-btn">🧪 INICIAR ANÁLISE</button>
+            
+            <div style="margin-top: 20px; font-size: 0.75rem; color: #4a6a5a; flex-grow: 1;">
+                SISTEMA LOG:
+                <div id="log-display" style="height: 150px; overflow-y: auto; margin-top: 10px; border-top: 1px solid #222; padding-top: 10px; line-height: 1.6;">
+                    &gt; Sistema online...<br>&gt; Aguardando entrada...
+                </div>
+            </div>
+            <button class="btn" style="border-color: #444; color: #666; margin-top: 10px;" onclick="window.location.href='agrovr.html'">ENCERRAR SESSÃO</button>
+        </section>
+
+        <section class="sample-viewport">
+            <div id="scan-line"></div>
+            <div class="lens-overlay" id="lens"></div>
+            <img src="https://via.placeholder.com/600x600/051510/00ff88?text=INSIRA+UMA+AMOSTRA" id="sample-img" alt="Visualização da Amostra">
+        </section>
+
+        <section class="panel">
+            <h3 style="font-size: 0.9rem; color: var(--dna-cyan); margin-bottom: 20px;">BIO-MÉTRICAS</h3>
+            <div class="stat-box"><span class="stat-label">ESPÉCIE</span><span class="stat-value" id="val-nome">---</span></div>
+            <div class="stat-box"><span class="stat-label">ÍNDICE DE CLOROFILA</span><span class="stat-value" id="val-saude">---</span></div>
+            <div class="stat-box"><span class="stat-label">TURGÊNCIA CELULAR</span><span class="stat-value" id="val-hidra">---</span></div>
+            <div class="stat-box"><span class="stat-label">SISTEMA IMUNE</span><span class="stat-value" id="val-defesa">---</span></div>
+            <div class="stat-box"><span class="stat-label">FENOLOGIA</span><span class="stat-value" id="val-cresc">---</span></div>
+            
+            <div id="result-badge" style="margin-top: auto; padding: 15px; border-radius: 10px; background: rgba(0,255,136,0.15); border: 1px solid var(--bio-green); display: none;">
+                <span style="font-size: 0.7rem; color: var(--bio-green); font-weight: bold;">VEREDITO FINAL:</span>
+                <p id="veredito-text" style="font-size: 0.8rem; margin: 8px 0 0 0; color: #fff;"></p>
+            </div>
+        </section>
+    </main>
+
+    <div id="gallery-overlay">
+        <div class="gallery-content">
+            <div class="thumb" onclick="selectSample('Soja', 'Glycine max', 'soja.png')">
+                <img src="soja.png" alt="Soja"><p>Soja</p>
+            </div>
+            <div class="thumb" onclick="selectSample('Milho', 'Zea mays', 'milho.png')">
+                <img src="milho.png" alt="Milho"><p>Milho</p>
+            </div>
+            <div class="thumb" onclick="selectSample('Trigo', 'Triticum', 'trigo.png')">
+                <img src="trigo.png" alt="Trigo"><p>Trigo</p>
+            </div>
+            <div class="thumb" onclick="selectSample('Algodão', 'Gossypium', 'algodao.png')">
+                <img src="algodao.png" alt="Algodão"><p>Algodão</p>
+            </div>
+            <div class="thumb" onclick="selectSample('Café', 'Coffea arabica', 'cafe.png')">
+                <img src="cafe.png" alt="Café"><p>Café</p>
+            </div>
+            <div class="thumb" onclick="selectSample('Castanha', 'Anacardium', 'castanha.png')">
+                <img src="castanha.png" alt="Castanha"><p>Castanha</p>
+            </div>
+            <button class="btn" style="grid-column: span 3; margin-top: 10px;" onclick="toggleGallery()">CANCELAR</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
