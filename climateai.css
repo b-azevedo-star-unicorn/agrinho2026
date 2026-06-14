@@ -1,0 +1,195 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&family=Outfit:wght@300;600&family=JetBrains+Mono:wght@400;700&display=swap');
+
+:root {
+    --sky: #4cc9f0;
+    --storm: #7209b7;
+    --sun: #ffbe0b;
+    --heat: #f72585;
+    --safe: #00ff88;
+    --glass: rgba(255, 255, 255, 0.05);
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background: #050505;
+    color: white;
+    margin: 0;
+    min-height: 100vh;
+    transition: background 1s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+/* AVISO PEDAGÓGICO */
+#aviso-pedagogico {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.98); display: flex; align-items: center; justify-content: center;
+    z-index: 10000; backdrop-filter: blur(15px);
+}
+
+.modal-pedagogico {
+    background: #16213e; 
+    padding: 50px; 
+    border-radius: 30px; 
+    text-align: center; 
+    max-width: 500px; 
+    border: 2px solid var(--sky); 
+    box-shadow: 0 0 50px rgba(0,0,0,0.5);
+}
+
+.modal-pedagogico h2 {
+    color: var(--sky); 
+    font-family: 'Fredoka'; 
+    font-size: 2rem;
+    margin-top: 0;
+}
+
+.modal-pedagogico p {
+    color: #ccc; 
+    line-height: 1.8; 
+    font-size: 1.1rem;
+}
+
+.modal-pedagogico button {
+    background: var(--sky); 
+    border: none; 
+    padding: 15px 40px; 
+    border-radius: 30px; 
+    font-weight: bold; 
+    cursor: pointer; 
+    margin-top: 20px; 
+    font-size: 1rem;
+}
+
+/* BARRA DE MONITORAMENTO SUPERIOR */
+.radar-bar {
+    background: rgba(0,0,0,0.9);
+    border-bottom: 1px solid var(--sky);
+    padding: 15px 30px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: space-between;
+    position: sticky; top: 0; z-index: 100;
+}
+
+.alert-pulse {
+    width: 10px; height: 10px; background: var(--safe);
+    border-radius: 50%; display: inline-block;
+    margin-right: 10px; animation: pulse 1s infinite;
+}
+
+@keyframes pulse { 50% { opacity: 0.3; } }
+
+/* ESTRUTURA E LAYOUT */
+.container { 
+    max-width: 1400px; 
+    margin: 0 auto; 
+    padding: 40px 20px; 
+    flex-grow: 1; 
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.main-grid {
+    display: grid;
+    grid-template-columns: 380px 1fr 380px;
+    gap: 30px;
+}
+
+.card {
+    background: var(--glass);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 32px;
+    padding: 30px;
+}
+
+.card-title {
+    margin-top: 0; 
+    font-family: 'Fredoka'; 
+    color: var(--sky);
+}
+
+/* CENTRO DO PAINEL */
+.temp-hero {
+    text-align: center;
+    padding: 60px 20px;
+    background: radial-gradient(circle at center, rgba(76, 201, 240, 0.12) 0%, transparent 70%);
+}
+
+#main-icon { font-size: 6rem; }
+
+#weather-desc {
+    letter-spacing: 8px; 
+    color: var(--sky); 
+    margin: 15px 0 0 0; 
+    font-weight: bold;
+}
+
+.big-temp { font-size: 7.5rem; font-weight: bold; margin: 10px 0; line-height: 1; }
+
+.forecast-mini { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 40px; }
+.day-box { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 20px; text-align: center; font-size: 0.9rem; }
+.mini-icon { font-size: 2rem; margin: 10px 0; }
+.mini-temp { font-weight: bold; }
+
+/* RECOMENDAÇÕES DA IA */
+.insight-card { 
+    border-left: 5px solid var(--sky); 
+    background: rgba(76, 201, 240, 0.05); 
+    padding: 20px; 
+    margin-bottom: 20px; 
+}
+.insight-card p { font-size: 1rem; margin: 10px 0; }
+.card-safe { border-color: var(--safe); }
+
+.tag-blue { color: var(--sky); font-weight: bold; }
+.tag-safe { color: var(--safe); font-weight: bold; }
+
+/* BOTÕES DE PREVISÃO */
+.btn-predict {
+    width: 100%; padding: 18px; border-radius: 15px; border: none;
+    cursor: pointer; font-weight: bold; text-transform: uppercase;
+    margin-bottom: 12px; transition: 0.3s; font-size: 0.9rem;
+}
+.btn-blue { background: var(--sky); color: #000; }
+.btn-outline { background: transparent; border: 1px solid var(--sky); color: var(--sky); }
+.btn-predict:hover { transform: scale(1.02); }
+
+/* TABELA DE SENSORES */
+.tech-table { width: 100%; border-collapse: collapse; font-size: 1rem; }
+.tech-table td { padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.tech-table td:last-child { text-align: right; font-weight: bold; color: var(--sky); font-family: 'JetBrains Mono'; }
+
+/* BARRA DE PROBABILIDADE */
+.prob-container { margin-top: 40px; }
+.prob-container small { color: #888; font-weight: bold; }
+.prob-bar-wrapper { display: flex; align-items: center; gap: 15px; margin-top: 10px; }
+.prob-bar-bg { flex: 1; height: 10px; background: rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden; }
+
+#prob-bar { 
+    width: 5%; 
+    height: 100%; 
+    background: var(--sky); 
+    transition: 1.5s cubic-bezier(0.4, 0, 0.2, 1); 
+}
+
+#prob-val { font-size: 1rem; font-weight: bold; font-family: 'JetBrains Mono'; }
+
+/* RODAPÉ DE IMPACTOS */
+.impact-footer {
+    padding: 20px;
+    text-align: center;
+    font-size: 0.75rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    background: rgba(0,0,0,0.8);
+    border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 1200px) { 
+    .main-grid { grid-template-columns: 1fr; } 
+}
