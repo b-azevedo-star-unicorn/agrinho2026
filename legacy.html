@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legacy Pro | Gestão de Patrimônio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="back-btn">← SAIR DO SISTEMA</a>
+        <div class="nav-title">LEGACY PRO | GESTÃO PATRIMONIAL</div>
+    </nav>
+
+    <div class="container">
+        <header>
+            <h1>Relatório de Sucessão</h1>
+            <p>Projeção de Valorização de Ativos Agrícolas 2026 - 2046</p>
+        </header>
+
+        <div class="legacy-grid">
+            <div class="panel">
+                <h3>Dados de Entrada</h3>
+                <div class="input-group">
+                    <label for="val_ha">Valor do Hectare (R$)</label>
+                    <input type="number" id="val_ha" value="60000" oninput="projetar()">
+                </div>
+                <div class="input-group">
+                    <label for="total_ha">Área Total (Hectares)</label>
+                    <input type="number" id="total_ha" value="150" oninput="projetar()">
+                </div>
+                <div class="input-group">
+                    <label for="tech">Estratégia de Manejo</label>
+                    <select id="tech" onchange="projetar()">
+                        <option value="1.08">Manejo Convencional (+8% dec.)</option>
+                        <option value="1.20">Certificação Orgânica (+20% dec.)</option>
+                        <option value="1.45">Fazenda Carbono Zero (+45% dec.)</option>
+                    </select>
+                </div>
+                <p class="footer-note">*A valorização considera a melhoria da saúde do solo e valor de marca no mercado global.</p>
+            </div>
+
+            <div class="panel">
+                <h3>Crescimento Patrimonial</h3>
+                
+                <div class="chart-area">
+                    <div class="bar" id="b1" style="height: 30%;"> 
+                        <span class="bar-val" id="v1">R$ 0M</span> 
+                    </div>
+                    <div class="bar" id="b2" style="height: 50%;"> 
+                        <span class="bar-val" id="v2">R$ 0M</span> 
+                    </div>
+                    <div class="bar" id="b3" style="height: 80%;"> 
+                        <span class="bar-val" id="v3">R$ 0M</span> 
+                    </div>
+                </div>
+
+                <div class="result-box">
+                    <small class="result-label">Valor Estimado para a Próxima Geração</small>
+                    <div class="result-container">
+                        <div id="v_final">R$ 0,00</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
