@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SustentaAgro | Inteligência Rural</title>
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Rock+Salt&family=Bree+Serif&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="modal-aviso">
+        <div class="modal-conteudo">
+            <h2>Bem-vindo ao SustentaAgro</h2>
+            <hr border="1" color="#3e2723">
+            <p><strong>Para que serve:</strong> Este site é uma central de inteligência agrícola que une ferramentas de sustentabilidade, rastreabilidade e economia circular para o dia a dia no campo.</p>
+            <p><strong>Público-alvo:</strong> Direcionado a pequenos e médios produtores rurais, técnicos agrícolas e estudantes que buscam modernizar a gestão da terra preservando o meio ambiente.</p>
+            <button class="btn-fechar" onclick="fecharModal()">CONTINUAR</button>
+        </div>
+    </div>
+
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
+
+    <header>
+        <h1>SustentaAgro</h1>
+        <p>Tecnologia e Sustentabilidade Rural</p>
+    </header>
+
+    <div class="grid-container">
+        <a href="bioradar.html" class="card">
+            <div class="badge">Rede Local</div>
+            <div class="icon">🚜</div>
+            <h3>Bio-Radar</h3>
+            <p>Conecte-se com produtores vizinhos para a troca e venda de adubos e resíduos orgânicos.</p>
+            <div class="btn-rustico">Ver Mapa de Trocas</div>
+        </a>
+
+        <a href="carbono.html" class="card">
+            <div class="badge">Ativos Verdes</div>
+            <div class="icon">🍃</div>
+            <h3>Carbon Wallet</h3>
+            <p>Calcule a rentabilidade das suas áreas preservadas e explore o mercado de crédito de carbono.</p>
+            <div class="btn-rustico">Simular Ganhos</div>
+        </a>
+
+        <a href="legacy.html" class="card">
+            <div class="badge">Patrimônio</div>
+            <div class="icon">📈</div>
+            <h3>Legacy Pro</h3>
+            <p>Analise como a gestão sustentável aumenta o valor da sua terra para as próximas gerações.</p>
+            <div class="btn-rustico">Projeção de Valor</div>
+        </a>
+
+        <a href="rastroverde.html" class="card">
+            <div class="badge">Certificação</div>
+            <div class="icon">🪵</div>
+            <h3>Rastro Verde</h3>
+            <p>Certifique a origem da sua colheita e ofereça transparência total para o consumidor final.</p>
+            <div class="btn-rustico">Rastrear Lote</div>
+        </a>
+
+        <a href="biolab.html" class="card">
+            <div class="badge">Bio-Defesa</div>
+            <div class="icon">🧪</div>
+            <h3>BioLab Assist</h3>
+            <p>Guia técnico para o uso de controle biológico e redução de produtos químicos no manejo.</p>
+            <div class="btn-rustico">Ver Guia Técnico</div>
+        </a>
+
+        <a href="aquaguard.html" class="card">
+            <div class="badge">Hidrologia</div>
+            <div class="icon">💧</div>
+            <h3>AquaGuard</h3>
+            <p>Monitore a qualidade das nascentes e o nível de água dos reservatórios da propriedade.</p>
+            <div class="btn-rustico">Medir Recursos</div>
+        </a>
+
+        <a href="agrovr.html" class="card">
+            <div class="badge">Capacitação</div>
+            <div class="icon">🥽</div>
+            <h3>AgroVR Academy</h3>
+            <p>Treinamentos em realidade virtual para otimizar o uso de máquinas e evitar desperdícios.</p>
+            <div class="btn-rustico">Acessar Aulas</div>
+        </a>
+
+        <a href="climate.html" class="card">
+            <div class="badge">Climatologia</div>
+            <div class="icon">⛈️</div>
+            <h3>Climate AI</h3>
+            <p>Previsão meteorológica detalhada para planejar o plantio e a proteção do solo.</p>
+            <div class="btn-rustico">Ver Previsão</div>
+        </a>
+    </div>
+
+    <footer>
+        PROJETO AGRINHO 2026 - Tecnologia e Sustentabilidade no Campo
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
