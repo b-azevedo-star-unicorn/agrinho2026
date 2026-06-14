@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BioLab Assist | Diagnóstico Avançado</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="back-btn">← SAIR DO LABORATÓRIO</a>
+        <div style="color: var(--neon-green); font-weight: bold;">BIOLAB SCANNER v2.0</div>
+    </nav>
+
+    <div class="container">
+        <header>
+            <h1>BioLab Assist</h1>
+            <p>Inteligência Artificial para Manejo Biológico de Precisão</p>
+        </header>
+
+        <div class="lab-layout">
+            <div class="control-panel">
+                <div class="input-group">
+                    <label>CULTURA / PLANTAÇÃO</label>
+                    <select id="cultura" onchange="analisar()">
+                        <option value="Soja">Soja</option>
+                        <option value="Milho">Milho</option>
+                        <option value="Cafe">Café</option>
+                        <option value="Cana">Cana-de-Açúcar</option>
+                        <option value="Hortifruti">Hortifruti (Tomate/Alface)</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>DETECÇÃO DE PATÓGENO</label>
+                    <select id="praga" onchange="analisar()">
+                        <option value="percevejo">Percevejo-Marrom</option>
+                        <option value="ferrugem">Ferrugem Asiática</option>
+                        <option value="lagarta">Lagarta-do-Cartucho</option>
+                        <option value="cigarrinha">Cigarrinha-do-Milho</option>
+                        <option value="broca">Broca-do-Café</option>
+                        <option value="bicho_mineiro">Bicho-Mineiro</option>
+                        <option value="broca_cana">Broca-da-Cana</option>
+                        <option value="nematoide">Nematoides de Solo</option>
+                        <option value="mosca_branca">Mosca-Branca</option>
+                    </select>
+                </div>
+                <p style="font-size: 0.8rem; color: #888;">*O sistema cruza dados genéticos do patógeno com agentes de biocontrole registrados.</p>
+            </div>
+
+            <div class="display-panel">
+                <div class="label-scan">MODO: ANÁLISE DE BIO-DNA</div>
+                
+                <div id="nome-alvo">SELECIONE...</div>
+                
+                <div class="info-box">
+                    <div class="info-title">AGENTE DE COMBATE BIOLÓGICO:</div>
+                    <div class="info-value" id="agente-nome">---</div>
+                </div>
+
+                <div class="info-box" style="border-color: #fff;">
+                    <div class="info-title" style="color: #fff;">TAXA DE SUPRESSÃO (EFICÁCIA):</div>
+                    <div class="info-value" id="eficacia-txt">0%</div>
+                    <div class="eficacia-bar"><div id="bar-fill"></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
