@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AquaGuard Pro | Gestão Hídrica 360</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="aviso-pedagogico">
+        <div class="modal-conteudo">
+            <h2>⚠️ Nota Importante</h2>
+            <p>
+                Este sistema é um <b>protótipo educacional</b> desenvolvido para fins pedagógicos. 
+                Os dados de vazão, umidade e sensores exibidos são <b>simulações fictícias</b> 
+                criadas para demonstrar o potencial da tecnologia no campo.
+            </p>
+            <p>
+                As informações não devem ser utilizadas para controle real de sistemas hídricos sem a supervisão de um engenheiro agrônomo.
+            </p>
+            <button class="btn-entendi" onclick="fecharAviso()">ENTRAR NO SISTEMA</button>
+        </div>
+    </div>
+
+    <div id="bubble-bg"></div>
+
+    <nav>
+        <a href="index.html" class="back-btn">← HUB</a>
+        <div style="font-weight: bold; color: var(--accent);">AQUAGUARD PRO</div>
+    </nav>
+
+    <div class="container">
+        <div class="system-alert" id="radar-alert">
+            <div class="alert-dot" id="radar-dot"></div>
+            <span id="radar-text">SISTEMA ONLINE // AGUARDANDO COMANDO DE IRRIGAÇÃO...</span>
+        </div>
+
+        <header>
+            <h1>AquaGuard</h1>
+        </header>
+
+        <div class="grid">
+            <div class="card">
+                <h3>⚙️ Painel de Controle</h3>
+                
+                <label>ÁREA DE MONITORAMENTO:</label>
+                <select id="setor" onchange="resetSim()">
+                    <option value="pivo">📍 Pivô Central (Soja)</option>
+                    <option value="nascente">🌿 Nascente Protegida</option>
+                    <option value="estufa">🧪 Estufa Hidropônica</option>
+                </select>
+
+                <label>FREQUÊNCIA DE DADOS:</label>
+                <div class="speed-control">
+                    <button id="sp-real" class="speed-btn active" onclick="setSpeed('real')">TEMPO REAL</button>
+                    <button id="sp-sim" class="speed-btn" onclick="setSpeed('sim')">SIMULAÇÃO 24H</button>
+                </div>
+
+                <label>TIPO DE PULSO:</label>
+                <select id="tipo-pulso">
+                    <option value="curto">⚡ Pulso Curto (Economia)</option>
+                    <option value="longo">🌊 Pulso Longo (Profundo)</option>
+                    <option value="intermitente">🔄 Intermitente</option>
+                </select>
+
+                <button id="btn-chuva" class="btn-main btn-chuva" onclick="toggleChuva()">LIGAR IRRIGAÇÃO</button>
+            </div>
+
+            <div class="card" style="text-align:center;">
+                <h3 id="display-title">Nível do Reservatório</h3>
+                <div class="tank-wrap">
+                    <div id="water-fill" class="water-body" style="height: 80%;">
+                        <div class="wave-top"></div>
+                    </div>
+                </div>
+                <div style="font-size: 3rem; font-weight: bold; margin-top:10px;" id="txt-perc">80%</div>
+                <small id="txt-mode" style="color: var(--accent); text-transform: uppercase;">Modo: Tempo Real</small>
+            </div>
+
+            <div class="card">
+                <h3>📈 Dashboard</h3>
+                <div class="data-row"><span>UMIDADE SOLO:</span><span id="solo-val">45%</span></div>
+                <div class="data-row"><span>VAZÃO ATUAL:</span><span id="vazao">0 L/s</span></div>
+                <div class="data-row"><span>QUALIDADE:</span><span>98%</span></div>
+                
+                <div style="margin-top: 20px; background: rgba(0,245,212,0.1); padding: 15px; border-radius: 15px;">
+                    <small>IA SUGERE:</small>
+                    <p id="sugestao-ia" style="font-size: 0.8rem; margin: 5px 0;">O nível está estável. Recomendamos irrigação em pulsos curtos para economizar energia.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
