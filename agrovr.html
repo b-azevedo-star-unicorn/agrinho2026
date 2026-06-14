@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroVR Academy | Imersão 360°</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="cursor"></div>
+    <div class="vr-overlay"></div>
+    <div class="scanlines"></div>
+    <div class="world-bg" id="bg"></div>
+
+    <a href="index.html" class="back-btn">← EXIT SIMULATION</a>
+
+    <div class="interface">
+        <header class="hud-header">
+            <h1>AgroVR Academy</h1>
+            <div class="status-bar">
+                <span>● SYSTEM_OS: V2.0</span>
+                <span>● NEURAL_SYNC: 98%</span>
+                <span>● AREA: EXPERIMENTAL_FARM</span>
+            </div>
+        </header>
+
+        <div class="training-grid">
+            <a href="drones.html" class="card-link">
+                <div class="vr-card">
+                    <div class="card-tag">DRONE_PILOT_V1</div>
+                    <i class="emoji-icon">🛸</i>
+                    <h3>Pilotagem de Drones</h3>
+                    <p>Mapeamento térmico e aplicação de insumos com visão computacional de alta precisão.</p>
+                    <button class="btn-start">INICIAR SESSÃO</button>
+                </div>
+            </a>
+
+            <a href="autonomos.html" class="card-link">
+                <div class="vr-card">
+                    <div class="card-tag">MECH_ENG_V4</div>
+                    <i class="emoji-icon">🚜</i>
+                    <h3>Sistemas Autônomos</h3>
+                    <p>Configuração de plantadeiras robóticas e calibração de sensores LiDAR em tempo real.</p>
+                    <button class="btn-start">INICIAR SESSÃO</button>
+                </div>
+            </a>
+
+            <a href="genetica.html" class="card-link">
+                <div class="vr-card">
+                    <div class="card-tag">BIO_LAB_V2</div>
+                    <i class="emoji-icon">🧬</i>
+                    <h3>Genética Sustentável</h3>
+                    <p>Análise de DNA do solo para otimização de nutrientes sem uso de aditivos químicos.</p>
+                    <button class="btn-start">INICIAR SESSÃO</button>
+                </div>
+            </a>
+        </div>
+
+        <div class="hud-footer">
+            <div>COORDINATES: <span id="posx">0</span>, <span id="posy">0</span></div>
+            <div>AGRINHO 2026 // EDUCATION_PLATFORM</div>
+            <div id="clock">00:00:00</div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
