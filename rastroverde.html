@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rastro Verde | Blockchain Agrinho</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="back-link">← HUB</a>
+        <div class="nav-title">RASTRO VERDE BLOCKCHAIN</div>
+    </nav>
+
+    <div class="container">
+        <header class="page-header">
+            <h1>Certificação de Origem</h1>
+            <p>Registre seu lote na rede descentralizada para garantir transparência total.</p>
+        </header>
+
+        <div class="main-card">
+            <div class="input-side">
+                <h2>Dados do Lote</h2>
+                
+                <div class="field">
+                    <label for="prod">PRODUTO SUSTENTÁVEL</label>
+                    <select id="prod">
+                        <option value="MILHO-BIO">Milho (Controle Biológico)</option>
+                        <option value="SOJA-LIVRE">Soja (Desmatamento Zero)</option>
+                        <option value="FEIJAO-ORG">Feijão Orgânico</option>
+                        <option value="TRIGO-GEN">Trigo Regenerativo</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label for="car">ID DA FAZENDA (CAR)</label>
+                    <input type="text" id="car" placeholder="Ex: PR-1234567-ABC">
+                </div>
+
+                <div class="field">
+                    <label for="lote">NÚMERO DO LOTE</label>
+                    <input type="number" id="lote" value="202601">
+                </div>
+
+                <button class="btn-register" onclick="registrar()">REGISTRAR NA BLOCKCHAIN</button>
+            </div>
+
+            <div class="display-side">
+                <div class="loading-overlay" id="loader">
+                    <div class="spinner"></div>
+                    <p>Criptografando Dados...</p>
+                </div>
+
+                <div id="cert-content" class="cert-box">
+                    <div class="qr-box">
+                        <div class="qr-dots"></div>
+                    </div>
+                    <div class="success-msg" id="msg">✓ REGISTRO IMUTÁVEL CONFIRMADO</div>
+                    
+                    <div class="hash-container">
+                        <small>CÓDIGO HASH DE RASTREIO:</small>
+                        <div id="hash-display">AGUARDANDO REGISTRO...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
