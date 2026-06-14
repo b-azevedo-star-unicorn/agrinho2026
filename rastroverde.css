@@ -1,0 +1,169 @@
+:root {
+    --tech-blue: #00b4d8;
+    --dark-blue: #03045e;
+    --clean-white: #ffffff;
+    --bg-gray: #f0f2f5;
+    --success: #06d6a0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-gray);
+    color: var(--dark-blue);
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* BARRA DE NAVEGAÇÃO */
+nav {
+    width: 100%;
+    padding: 15px;
+    background: var(--dark-blue);
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.back-link { text-decoration: none; color: var(--tech-blue); font-weight: bold; }
+.nav-title { font-weight: bold; letter-spacing: 2px; }
+
+/* LAYOUT E ESTRUTURA */
+.container {
+    max-width: 900px;
+    width: 95%;
+    padding: 20px;
+}
+
+.page-header { text-align: center; margin-bottom: 30px; }
+.page-header h1 { margin: 0; color: var(--dark-blue); }
+.page-header p { color: #666; }
+
+.main-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.input-side { padding: 30px; border-right: 1px solid #eee; }
+
+.display-side { 
+    padding: 30px; 
+    background: #fafafa; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center;
+    position: relative;
+}
+
+/* FORMULÁRIOS E CAMPOS */
+h2 { color: var(--dark-blue); margin-top: 0; font-size: 1.4rem; }
+.field { margin-bottom: 15px; }
+label { display: block; font-size: 0.8rem; font-weight: bold; margin-bottom: 5px; color: #666; }
+
+input, select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: 0.3s;
+    box-sizing: border-box;
+}
+
+input:focus { border-color: var(--tech-blue); outline: none; }
+
+.btn-register {
+    width: 100%;
+    background: var(--dark-blue);
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+.btn-register:hover { background: var(--tech-blue); }
+
+/* QR CODE E EXIBIÇÃO DO CERTIFICADO */
+.cert-box { text-align: center; width: 100%; }
+
+.qr-box {
+    width: 200px;
+    height: 200px;
+    background: white;
+    border: 2px solid var(--dark-blue);
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.5s;
+    margin: 0 auto;
+}
+
+.qr-dots {
+    width: 160px;
+    height: 160px;
+    background-image: 
+        radial-gradient(var(--dark-blue) 2px, transparent 2px),
+        linear-gradient(45deg, transparent 45%, var(--dark-blue) 45%, var(--dark-blue) 55%, transparent 55%);
+    background-size: 12px 12px, 100% 100%;
+}
+
+.hash-container { margin-top: 20px; }
+.hash-container small { color: #888; font-weight: bold; display: block; margin-bottom: 5px; }
+
+#hash-display {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    color: var(--tech-blue);
+    word-break: break-all;
+    text-align: center;
+}
+
+/* FILTRO DE CARREGAMENTO (ANIMADO) */
+.loading-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(255,255,255,0.9);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.spinner {
+    border: 4px solid rgba(0,0,0,0.1);
+    border-left-color: var(--tech-blue);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.success-msg {
+    color: var(--success);
+    font-weight: bold;
+    display: none;
+    margin-top: 15px;
+}
+
+/* MEDIA QUERIES PARA RESPONSIVIDADE */
+@media (max-width: 768px) { 
+    .main-card { grid-template-columns: 1fr; } 
+    .input-side { border-right: none; border-bottom: 1px solid #eee; }
+}
