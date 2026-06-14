@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Climate AI Pro | Inteligência Preditiva</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="aviso-pedagogico">
+        <div class="modal-pedagogico">
+            <h2>Nota Pedagógica</h2>
+            <p>Este módulo demonstra como a IA ajuda o produtor a prever riscos e tomar decisões. Todos os dados são simulações acadêmicas para fins didáticos.</p>
+            <button onclick="document.getElementById('aviso-pedagogico').style.display='none'">ACESSAR ESTAÇÃO</button>
+        </div>
+    </div>
+
+    <div class="radar-bar">
+        <div>
+            <span class="alert-pulse" id="dot"></span> 
+            <span id="radar-msg">SISTEMA PREDITIVO ATIVO // SATÉLITE GOES-16 OK</span>
+        </div>
+        <div id="clock">00:00:00</div>
+    </div>
+
+    <div class="container">
+        <div class="main-grid">
+            <div class="card">
+                <h2 class="card-title">Inteligência IA</h2>
+                <button class="btn-predict btn-blue" onclick="prever('normal')">Simular Tempo Real</button>
+                <button class="btn-predict btn-outline" onclick="prever('chuva')">Projetar Frente Fria</button>
+                <button class="btn-predict btn-outline" onclick="prever('seca')">Projetar Veranico</button>
+                
+                <div style="margin-top: 30px;">
+                    <div class="insight-card">
+                        <small class="tag-blue">RECOMENDAÇÃO:</small>
+                        <p id="ia-advice">Janela ideal para semeadura e manejo.</p>
+                    </div>
+                    <div id="status-irrig" class="insight-card card-safe">
+                        <small class="tag-safe">MANEJO HÍDRICO:</small>
+                        <p id="ia-water">Irrigação liberada. Níveis normais.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card temp-hero">
+                <div id="main-icon">☀️</div>
+                <p id="weather-desc">CÉU LIMPO</p>
+                <h1 class="big-temp" id="main-temp">24°C</h1>
+                
+                <div class="forecast-mini">
+                    <div class="day-box"><div>Amanhã</div><div class="mini-icon">⛅</div><div class="mini-temp">26/19</div></div>
+                    <div class="day-box"><div>Quarta</div><div class="mini-icon">☀️</div><div class="mini-temp">29/20</div></div>
+                    <div class="day-box"><div>Quinta</div><div class="mini-icon">⛈️</div><div class="mini-temp">22/17</div></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2 class="card-title">Dados Estação</h2>
+                <table class="tech-table">
+                    <tr><td>Radiação Solar</td><td id="val-rad">780 W/m²</td></tr>
+                    <tr><td>Vel. do Vento</td><td id="val-vento">12 km/h</td></tr>
+                    <tr><td>Umidade Relativa</td><td id="val-umid">58%</td></tr>
+                    <tr><td>Pressão Atm.</td><td id="val-pres">1014 hPa</td></tr>
+                    <tr><td>Delta T</td><td id="val-dt">4.2</td></tr>
+                </table>
+                <div class="prob-container">
+                    <small>PROBABILIDADE DE CHUVA</small>
+                    <div class="prob-bar-wrapper">
+                        <div class="prob-bar-bg">
+                            <div id="prob-bar"></div>
+                        </div>
+                        <span id="prob-val">5%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="impact-footer" id="impact-txt">
+        IMPACTOS DETECTADOS: ESTABILIDADE CLIMÁTICA // RISCO DE GEADA: NULO // EVAPOTRANSPIRAÇÃO: NORMAL
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
