@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@300;600;800&display=swap');
+
+:root {
+    --bio-green: #00ff88;
+    --dna-cyan: #00e1ff;
+    --bg-deep: #010806;
+    --glass: rgba(0, 255, 136, 0.1);
+}
+
+body, html {
+    margin: 0; padding: 0; width: 100%; height: 100vh;
+    background: var(--bg-deep); color: white;
+    font-family: 'JetBrains Mono', monospace; overflow: hidden;
+}
+
+/* AVISO PEDAGÓGICO */
+#aviso-pedagogico {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.9); z-index: 9999;
+    display: flex; justify-content: center; align-items: center;
+}
+
+.aviso-content {
+    background: #051510; border: 2px solid var(--bio-green); padding: 30px;
+    border-radius: 15px; text-align: center; max-width: 450px;
+}
+
+/* HEADER */
+header {
+    height: 65px; padding: 0 40px; border-bottom: 1px solid rgba(0, 255, 136, 0.2);
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(0,0,0,0.8); backdrop-filter: blur(10px);
+}
+
+.logo { font-family: 'Outfit'; font-weight: 800; font-size: 1.4rem; color: var(--bio-green); }
+
+/* GRID PRINCIPAL */
+main {
+    display: grid; 
+    grid-template-columns: 350px 1fr 350px; 
+    gap: 25px; padding: 25px; height: calc(100vh - 65px);
+    box-sizing: border-box;
+}
+
+.panel {
+    background: var(--glass); border: 1px solid rgba(0, 255, 136, 0.2);
+    border-radius: 15px; padding: 25px; display: flex; flex-direction: column;
+    backdrop-filter: blur(5px); height: 100%; box-sizing: border-box;
+}
+
+/* ÁREA DA IMAGEM (VIEWPORT) */
+.sample-viewport {
+    position: relative; background: #000; border-radius: 20px;
+    border: 2px solid #1a2a25; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+    height: 100%; box-shadow: inset 0 0 50px rgba(0,0,0,1);
+}
+
+#scan-line {
+    position: absolute; width: 100%; height: 4px;
+    background: var(--bio-green);
+    box-shadow: 0 0 20px var(--bio-green);
+    top: -10px; left: 0; z-index: 50; display: none;
+}
+
+@keyframes scanning {
+    0% { top: 0%; }
+    100% { top: 100%; }
+}
+
+#sample-img {
+    max-width: 95%; 
+    max-height: 90%; 
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    filter: brightness(0.9); object-fit: contain;
+}
+
+/* LENTE DO MICROSCÓPIO */
+.lens-overlay {
+    position: absolute; width: 350px; height: 350px;
+    border: 2px solid var(--bio-green); border-radius: 50%;
+    box-shadow: 0 0 0 9999px rgba(0,0,0,0.75);
+    display: none; z-index: 11; pointer-events: none;
+}
+
+/* INTERFACE DA GALERIA */
+#gallery-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.95); z-index: 1000;
+    display: none; justify-content: center; align-items: center;
+}
+
+.gallery-content {
+    background: #051510; padding: 40px; border: 1px solid var(--bio-green);
+    border-radius: 20px; display: grid; grid-template-columns: repeat(3, 180px); gap: 20px;
+}
+
+.thumb {
+    cursor: pointer; border: 2px solid #333; border-radius: 12px;
+    padding: 15px; text-align: center; transition: 0.3s; background: rgba(255,255,255,0.02);
+}
+.thumb:hover { border-color: var(--bio-green); background: rgba(0,255,136,0.15); transform: translateY(-5px); }
+.thumb img { width: 120px; height: 120px; object-fit: cover; border-radius: 8px; margin-bottom: 10px; }
+
+/* BOTÕES INTERATIVOS */
+.btn {
+    background: transparent; border: 1px solid var(--bio-green);
+    color: var(--bio-green); padding: 14px; border-radius: 8px;
+    cursor: pointer; font-family: 'Outfit'; font-weight: bold;
+    margin-bottom: 12px; transition: 0.3s; width: 100%;
+    text-transform: uppercase; letter-spacing: 1px;
+}
+.btn:hover { background: var(--bio-green); color: black; box-shadow: 0 0 15px var(--bio-green); }
+.btn.active { background: var(--dna-cyan); color: black; border-color: var(--dna-cyan); }
+
+/* SEÇÃO DE MÉTRICAS */
+.stat-box { margin-bottom: 18px; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.stat-label { font-size: 0.7rem; color: #6a8a7a; text-transform: uppercase; }
+.stat-value { font-size: 1rem; color: var(--bio-green); font-weight: bold; display: block; margin-top: 4px; }
