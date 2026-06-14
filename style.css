@@ -1,0 +1,189 @@
+:root {
+    --madeira-escura: #3e2723;
+    --madeira-clara: #a1887f;
+    --terra: #5d4037;
+    --palha: #f5f5dc;
+    --verde-mato: #2e7d32;
+    --ferro: #212121;
+}
+
+body {
+    font-family: 'Bree Serif', serif;
+    background-color: #d7ccc8;
+    background-image: url('https://www.transparenttextures.com/patterns/pinstriped-suit.png');
+    color: var(--madeira-escura);
+    margin: 0;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* --- ESTILO DO AVISO DE BOAS-VINDAS (MODAL) --- */
+#modal-aviso {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.modal-conteudo {
+    background: #f4ece1;
+    padding: 40px;
+    max-width: 500px;
+    width: 90%;
+    border: 10px solid var(--madeira-escura);
+    box-shadow: 15px 15px 0px var(--terra);
+    position: relative;
+    text-align: center;
+}
+
+.modal-conteudo h2 {
+    font-family: 'Rock Salt', cursive;
+    color: var(--verde-mato);
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.modal-conteudo p {
+    font-family: 'Special Elite', cursive;
+    line-height: 1.6;
+    color: var(--madeira-escura);
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.btn-fechar {
+    background: var(--verde-mato);
+    color: white;
+    padding: 12px 25px;
+    border: 2px solid var(--ferro);
+    font-family: 'Special Elite', cursive;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-fechar:hover {
+    background: var(--terra);
+}
+
+/* --- RESTANTE DO ESTILO ORIGINAL --- */
+header {
+    text-align: center;
+    margin-bottom: 60px;
+    padding: 20px;
+    border: 4px solid var(--madeira-escura);
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 8px 8px 0px var(--terra);
+}
+
+header h1 {
+    font-family: 'Rock Salt', cursive;
+    font-size: 2.5rem;
+    color: var(--verde-mato);
+    margin: 0;
+    transform: rotate(-2deg);
+}
+
+header p {
+    font-family: 'Special Elite', display;
+    font-size: 1.2rem;
+    margin-top: 15px;
+    color: var(--terra);
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.card {
+    background: #efebe9;
+    border-left: 15px solid var(--madeira-escura);
+    border-top: 2px solid var(--madeira-escura);
+    border-right: 2px solid var(--madeira-escura);
+    border-bottom: 8px solid var(--madeira-escura);
+    padding: 30px;
+    text-decoration: none;
+    color: var(--madeira-escura);
+    transition: 0.3s;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover {
+    transform: scale(1.02);
+    background: #fff;
+    box-shadow: 10px 10px 0px var(--verde-mato);
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 10px; right: 10px;
+    width: 8px; height: 8px;
+    background: var(--ferro);
+    border-radius: 50%;
+}
+
+.badge {
+    font-family: 'Special Elite', display;
+    font-size: 0.8rem;
+    background: var(--madeira-clara);
+    color: #fff;
+    padding: 5px 10px;
+    display: inline-block;
+    margin-bottom: 15px;
+    width: fit-content;
+}
+
+.icon {
+    font-size: 40px;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.card h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.8rem;
+    color: var(--terra);
+    text-transform: uppercase;
+}
+
+.card p {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #4e342e;
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+.btn-rustico {
+    font-family: 'Special Elite', display;
+    background: var(--verde-mato);
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    border-radius: 0;
+    border: 2px solid var(--ferro);
+    font-weight: bold;
+}
+
+footer {
+    margin-top: 80px;
+    text-align: center;
+    font-family: 'Special Elite', display;
+    border: 2px dashed var(--terra);
+    padding: 20px;
+    background: rgba(255,255,255,0.2);
+    width: 100%;
+    max-width: 600px;
+}
