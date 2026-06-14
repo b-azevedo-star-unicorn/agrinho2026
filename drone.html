@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drone Pilot Infinity | SustentaAgro VR</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <a href="agrovr.html" class="back-btn">RETURN TO BASE</a>
+    <div class="scanner-line" id="scanner"></div>
+    
+    <div id="feed"></div>
+    
+    <div class="hud-overlay"></div>
+    <div class="crosshair"></div>
+
+    <div class="panel left-panel">
+        <h2>Telemetry</h2>
+        <div class="stat">ALTITUDE: <span class="stat-val" id="alt">50m</span></div>
+        <div class="stat">SPEED: <span class="stat-val" id="vel">0km/h</span></div>
+        <div class="stat">BATTERY: <span class="stat-val">94%</span></div>
+        <button class="btn" onclick="toggleScan()">Deep Scan</button>
+    </div>
+
+    <div class="panel help-panel">
+        <h2>Commands</h2>
+        <div class="stat">SETAS: <span class="stat-val">VOAR</span></div>
+        <div class="stat">W / S: <span class="stat-val">ALTURA</span></div>
+        <div class="stat" style="margin-top: 10px; opacity: 0.7;">Botoes de Acao:</div>
+        <div class="stat">SCAN: <span class="stat-val">ANALISAR</span></div>
+        <div class="stat">SPRAY: <span class="stat-val">APLICAR</span></div>
+    </div>
+
+    <div class="panel right-panel">
+        <h2>Agro Control</h2>
+        <div class="stat">TANK: <span class="stat-val" id="tank-level">100%</span></div>
+        <div class="stat">PRESSURE: <span class="stat-val">2.4 bar</span></div>
+        
+        <button class="btn" id="sprayBtn" onclick="toggleSpray()">Liberar Agrotóxico</button>
+        
+        <div id="results" class="scan-results">
+            <div class="stat">PLANT HEALTH: <span class="stat-val">98%</span></div>
+            <div class="stat">NITROGEN: <span class="stat-val">OPTIMAL</span></div>
+            <div class="stat">PESTS: <span class="stat-val" style="color:#ffbe0b">NONE</span></div>
+        </div>
+    </div>
+
+    <div class="panel bottom-panel">
+        <div class="stat">X: <span id="pos-x">0</span></div>
+        <div class="stat">Y: <span id="pos-y">0</span></div>
+        <div class="stat">STATUS: <span id="flight-status" style="color:#00ff88">READY</span></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
