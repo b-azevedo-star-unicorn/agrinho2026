@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bio-Radar | Marketplace de Resíduos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="modal-aviso">
+        <div class="modal-content">
+            <h2>⚠️ Aviso Importante</h2>
+            <p>Este site foi desenvolvido para fins pedagógicos (Concurso Agrinho 2026). Todas as informações são <strong>fictícias</strong>.</p>
+            <button class="btn-entendi" onclick="fecharAviso()">ENTENDI</button>
+        </div>
+    </div>
+
+    <aside class="sidebar">
+        <div class="logo" onclick="resetarMapa()">🔄 Bio-Radar</div>
+        
+        <input type="text" id="searchInput" class="search-box" placeholder="Pesquisar resíduo..." onkeyup="filtrar()">
+
+        <div class="filter-group">
+            <h4>CATEGORIAS</h4>
+            <div class="tag-container" id="categoryFilters">
+                <span class="tag active" onclick="filtrarCategoria('Todos', this)">Todos</span>
+                <span class="tag" onclick="filtrarCategoria('Fertilizante', this)">Fertilizante</span>
+                <span class="tag" onclick="filtrarCategoria('Biomassa', this)">Biomassa</span>
+                <span class="tag" onclick="filtrarCategoria('Ração', this)">Ração</span>
+            </div>
+        </div>
+
+        <div class="filter-group">
+            <h4>OFERTAS DISPONÍVEIS</h4>
+            <div class="offer-list" id="offerList"></div>
+        </div>
+    </aside>
+
+    <main class="map-area" id="mapContainer">
+        <div class="info-panel" id="info-panel">
+            <h2 id="info-title" style="margin: 0; font-size: 1.2rem;"></h2>
+            <p id="info-farm" style="color: var(--primary); margin: 5px 0; font-weight: bold;"></p>
+            <p id="info-desc" style="font-size: 0.85rem; color: #94a3b8; line-height: 1.4;"></p>
+            <div style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 10px; margin-top: 10px;">
+                <small>Impacto Ambiental:</small><br>
+                <strong id="info-impact" style="color: #fff;"></strong>
+            </div>
+            <button class="btn-match" onclick="realizarMatch()">SOLICITAR MATCH</button>
+            <button onclick="fecharPainel()" style="background:none; border:none; color:#94a3b8; cursor:pointer; width:100%; margin-top:10px; font-size: 0.8rem;">Fechar e Ver Todos</button>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
