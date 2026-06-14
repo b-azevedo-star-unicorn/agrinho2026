@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAT-LINK | CENTRAL DE CONTROLE AGRO</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@600;800&display=swap');
+
+        :root {
+            --neon-blue: #00e1ff;
+            --neon-green: #00ff88;
+            --neon-red: #ff3e3e;
+            --bg-dark: #020508;
+            --glass: rgba(5, 12, 20, 0.85);
+        }
+
+        body, html {
+            margin: 0; padding: 0; width: 100%; height: 100%;
+            background: var(--bg-dark); color: white;
+            font-family: 'JetBrains Mono', monospace; overflow: hidden;
+        }
+
+        /* CABEÇALHO */
+        header {
+            position: absolute; top: 0; left: 0; width: 100%;
+            padding: 20px 40px; box-sizing: border-box;
+            background: linear-gradient(to bottom, rgba(0, 225, 255, 0.1), transparent);
+            border-bottom: 1px solid rgba(0, 225, 255, 0.2);
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 100; backdrop-filter: blur(5px);
+        }
+
+        .main-title {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800; font-size: 1.5rem;
+            color: var(--neon-blue); text-transform: uppercase;
+            letter-spacing: 4px; display: flex; align-items: center; gap: 15px;
+        }
+
+        .main-title span {
+            font-size: 0.7rem; font-family: 'JetBrains Mono';
+            background: var(--neon-blue); color: black;
+            padding: 2px 8px; border-radius: 3px; letter-spacing: 1px;
+        }
+
+        /* CONTEINER DO CAMPO */
+        #field-container {
+            position: absolute; top: 55%; left: 42%;
+            width: 750px; height: 500px;
+            transform: translate(-50%, -50%);
+            background-image: url('Gemini_Generated_Image_y5jyp5y5jyp5y5jy.png');
+            background-size: cover;
+            background-position: center;
+            border: 2px solid #1a2a3a;
+            border-radius: 12px; z-index: 2;
+        }
+
+        #gps-canvas { position: absolute; top: 0; left: 0; z-index: 5; pointer-events: none; }
+
+        /* MENSAGEM DE SUCESSO FINAL */
+        #success-msg {
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 255, 136, 0.9);
+            color: black; padding: 20px 40px;
+            border-radius: 10px; font-family: 'Outfit';
+            font-weight: 800; text-align: center;
+            display: none; z-index: 1000;
+            box-shadow: 0 0 50px var(--neon-green);
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes popIn { from { transform: translate(-50%, -50%) scale(0.5); opacity: 0; } to { transform: translate(-50%, -50%) scale(1); opacity: 1; } }
+
+        #destination-marker {
+            position: absolute; width: 40px; height: 40px;
+            top: 460px; left: 580px; z-index: 6;
+            display: none; font-size: 24px;
+            animation: bounce 1.5s infinite;
+        }
+
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+        .unit {
+            position: absolute; width: 45px; height: 60px;
+            margin-left: -22.5px; margin-top: -30px;
+            background: var(--neon-blue); border-radius: 4px;
+            top: 470px; left: 20px; 
+            box-shadow: 0 0 20px var(--neon-blue);
+            display: flex; align-items: center; justify-content: center; font-size: 24px;
+            z-index: 10;
+        }
+
+        /* PAINÉIS */
+        .panel {
+            position: absolute; background: var(--glass);
+            border: 1px solid rgba(0, 225, 255, 0.2); padding: 15px;
+            backdrop-filter: blur(10px); z-index: 20;
+        }
+
+        .status-panel { top: 100px; right: 30px; width: 300px; border-top: 3px solid var(--neon-blue); }
+        .telemetry-panel { top: 320px; right: 30px; width: 300px; border-top: 3px solid var(--neon-green); }
+        .log-panel { bottom: 30px; right: 30px; width: 300px; height: 150px; font-size: 0.7rem; overflow-y: auto; }
+        .command-panel { bottom: 30px; left: 30px; width: 220px; border-bottom: 3px solid var(--neon-blue); }
+
+        h2 { font-family: 'Outfit'; font-size: 0.8rem; color: #8a9aaa; margin: 0 0 12px 0; text-transform: uppercase; letter-spacing: 2px; }
+        .data-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 4px; }
+        .value { color: #fff; font-weight: bold; }
+
+        .btn {
+            background: rgba(0, 225, 255, 0.05); border: 1px solid var(--neon-blue);
+            color: var(--neon-blue); padding: 12px; width: 100%;
+            cursor: pointer; font-weight: bold; margin-bottom: 8px;
+            text-transform: uppercase; font-size: 0.7rem; transition: 0.3s;
+        }
+        .btn:hover:not(:disabled) { background: var(--neon-blue); color: #000; }
+        .btn:disabled { border-color: #333; color: #555; }
+        
+        .log-entry { margin-bottom: 4px; color: #5a6a7a; font-size: 0.65rem; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="main-title">🛰️ SAT-LINK <span>AO VIVO</span></div>
+        <div style="font-size: 0.8rem; color: #4a5a6a;">ID_OP: #TR-800_ALFA_BR</div>
+    </header>
+
+    <div id="field-container">
+        <canvas id="gps-canvas" width="750" height="500"></canvas>
+        <div id="destination-marker">📍</div>
+        <div class="unit" id="tractor">🚜</div>
+        
+        <div id="success-msg">
+            <div style="font-size: 50px;">✓</div>
+            TRAJETO REALIZADO COM SUCESSO
+        </div>
+    </div>
+
+    <div class="panel status-panel">
+        <h2>Status do Sistema</h2>
+        <div class="data-row"><span>MISSÃO</span><span class="value" id="mode" style="color:var(--neon-green)">AGUARDANDO</span></div>
+        <div class="data-row"><span>CONEXÃO</span><span class="value" id="gps-stat">ESTÁVEL</span></div>
+        <div class="data-row"><span>BATERIA</span><span class="value">94%</span></div>
+    </div>
+
+    <div class="panel telemetry-panel">
+        <h2>Telemetria do Veículo</h2>
+        <div class="data-row"><span>VELOCIDADE</span><span class="value" id="speed">0.0 km/h</span></div>
+        <div class="data-row"><span>ÁREA</span><span class="value" id="area">0.00 ha</span></div>
+        <div class="data-row"><span>MOTOR</span><span class="value" id="temp">40°C</span></div>
+    </div>
+
+    <div class="panel log-panel" id="log-box">
+        <div class="log-entry">[SISTEMA] Link de satélite estabelecido.</div>
+        <div class="log-entry">[SISTEMA] Mapeamento de terreno pronto.</div>
+    </div>
+
+    <div class="panel command-panel">
+        <button class="btn" id="btn-scan" onclick="escanearTrajeto()">Escanear Rota</button>
+        <button class="btn" id="btn-start" onclick="iniciarMissao()" disabled>Ativar Piloto Automático</button>
+    </div>
+
+    <script>
+        const tractor = document.getElementById('tractor');
+        const canvas = document.getElementById('gps-canvas');
+        const ctx = canvas.getContext('2d');
+        const logBox = document.getElementById('log-box');
+        const marker = document.getElementById('destination-marker');
+        const successMsg = document.getElementById('success-msg');
+        
+        let missionActive = false;
+        let routePoints = [];
+
+        const points = [
+            {x: 20, y: 470},   
+            {x: 400, y: 250},  
+            {x: 420, y: 100},  
+            {x: 630, y: 80},   
+            {x: 690, y: 290},  
+            {x: 600, y: 480}   
+        ];
+
+        function addLog(text) {
+            const entry = document.createElement('div');
+            entry.className = 'log-entry';
+            entry.innerText = `[LOG] ${text}`;
+            logBox.appendChild(entry);
+            logBox.scrollTop = logBox.scrollHeight;
+        }
+
+        function getCurvePoints(pts, tension = 0.4, numOfSegments = 60) {
+            let res = [];
+            let _pts = pts.slice(0);
+            _pts.unshift(pts[0]);
+            _pts.push(pts[pts.length - 1]);
+            for (let i = 1; i < _pts.length - 2; i++) {
+                for (let t = 0; t <= numOfSegments; t++) {
+                    let st = t / numOfSegments;
+                    let c1 = 2*Math.pow(st,3)-3*Math.pow(st,2)+1;
+                    let c2 = -(2*Math.pow(st,3))+3*Math.pow(st,2);
+                    let c3 = Math.pow(st,3)-2*Math.pow(st,2)+st;
+                    let c4 = Math.pow(st,3)-Math.pow(st,2);
+                    let t1x = (_pts[i+1].x-_pts[i-1].x)*tension;
+                    let t2x = (_pts[i+2].x-_pts[i].x)*tension;
+                    let t1y = (_pts[i+1].y-_pts[i-1].y)*tension;
+                    let t2y = (_pts[i+2].y-_pts[i].y)*tension;
+                    res.push({
+                        x: c1*_pts[i].x+c2*_pts[i+1].x+c3*t1x+c4*t2x,
+                        y: c1*_pts[i].y+c2*_pts[i+1].y+c3*t1y+c4*t2y
+                    });
+                }
+            }
+            return res;
+        }
+
+        function escanearTrajeto() {
+            routePoints = getCurvePoints(points);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.strokeStyle = "rgba(0, 225, 255, 0.7)";
+            ctx.lineWidth = 4;
+            ctx.setLineDash([5, 5]);
+            ctx.beginPath();
+            ctx.moveTo(routePoints[0].x, routePoints[0].y);
+            routePoints.forEach(p => ctx.lineTo(p.x, p.y));
+            ctx.stroke();
+
+            marker.style.display = 'block';
+            addLog("Rota otimizada para o terreno.");
+            document.getElementById('btn-scan').disabled = true;
+            document.getElementById('btn-start').disabled = false;
+        }
+
+        function iniciarMissao() {
+            if(missionActive) return;
+            missionActive = true;
+            successMsg.style.display = 'none';
+            document.getElementById('mode').innerText = "EM CURSO";
+            document.getElementById('speed').innerText = "5.4 km/h";
+            addLog("Iniciando tracionamento. Seguindo curva.");
+
+            let currentIndex = 0;
+            let areaCount = 0;
+            
+            function animate() {
+                if (!missionActive) return;
+                if (currentIndex < routePoints.length) {
+                    const p = routePoints[currentIndex];
+                    tractor.style.left = p.x + 'px';
+                    tractor.style.top = p.y + 'px';
+
+                    if (currentIndex < routePoints.length - 1) {
+                        const next = routePoints[currentIndex + 1];
+                        const angle = Math.atan2(next.y - p.y, next.x - p.x) * 180 / Math.PI;
+                        tractor.style.transform = `rotate(${angle + 90}deg)`;
+                    }
+
+                    if(currentIndex % 15 === 0) {
+                        areaCount += 0.03;
+                        document.getElementById('area').innerText = areaCount.toFixed(2) + " ha";
+                        document.getElementById('temp').innerText = (50 + Math.random()*3).toFixed(1) + "°C";
+                    }
+
+                    currentIndex++;
+                    requestAnimationFrame(animate);
+                } else {
+                    missionActive = false;
+                    addLog("Trajeto finalizado com sucesso.");
+                    document.getElementById('mode').innerText = "CONCLUÍDO";
+                    document.getElementById('speed').innerText = "0.0 km/h";
+                    marker.innerText = "🏁";
+                    
+                    // MOSTRAR MENSAGEM DE SUCESSO
+                    successMsg.style.display = 'block';
+                }
+            }
+            requestAnimationFrame(animate);
+        }
+    </script>
+</body>
+</html>
